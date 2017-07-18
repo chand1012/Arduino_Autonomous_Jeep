@@ -5,7 +5,7 @@ AF_DCMotor steer(3);
 void setup() {
   Serial.begin(9600);
   drive.setSpeed(255);
-  steer.setSpeed(255);
+  steer.setSpeed(180);
 }
 
 void loop() {

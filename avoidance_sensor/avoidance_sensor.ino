@@ -18,4 +18,5 @@ else
 {
 digitalWrite(ledPin, LOW);
 }
+Serial.println(avoidVal);
 }
