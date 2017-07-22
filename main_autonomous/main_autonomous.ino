@@ -2,10 +2,9 @@
 #include <AFMotor.h>
 
 //change these later
-#define trigPin 12
-#define echoPin 11
-#define led 10
-//#define led2 13
+#define trigPin A4
+#define echoPin A5
+
 long randNumber;
 AF_DCMotor drive(1);
 AF_DCMotor steer(3);
