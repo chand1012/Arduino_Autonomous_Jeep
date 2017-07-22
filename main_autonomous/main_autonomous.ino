@@ -1,7 +1,4 @@
-//needs finished
 #include <AFMotor.h>
-
-//change these later
 #define trigPin A4
 #define echoPin A5
 
@@ -19,9 +16,21 @@ void turnAround(){
     steer.run(BACKWARD);
   }
   drive.run(BACKWARD);
-  delay(2000);
+  delay(1000);
   drive.run(RELEASE);
   steer.run(RELEASE);
+}
+
+int return_cm_ping(){
+  long duration, cm_distance;
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  cm_distance = (duration/2) / 29.1;
+  return cm_distance;
 }
 
 void setup() {
@@ -29,8 +38,6 @@ void setup() {
   Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(led, OUTPUT);
-  //pinMode(led2, OUTPUT);
   drive.setSpeed(255);
   steer.setSpeed(200);
 }
@@ -38,21 +45,10 @@ void setup() {
 void loop() {
   randNumber = random(0,1);
   drive.run(FORWARD);
-  long duration, distance;
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH);
-  distance = (duration/2) / 29.1;
-  if (distance < 20) {
-    digitalWrite(led,HIGH);
-    //digitalWrite(led2,LOW);
-  } else {
-    digitalWrite(led,LOW);
+  long distance;
+  distance = return_cm_ping();
+  if(distance > 20) {
     turnAround();
-    //digitalWrite(led2,HIGH);
   }
   if (distance >= 200 || distance <= 0){
     Serial.println("Out of range");
