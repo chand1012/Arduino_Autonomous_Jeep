@@ -39,7 +39,7 @@ void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   drive.setSpeed(255);
-  steer.setSpeed(200);
+  steer.setSpeed(255);
 }
 
 void loop() {
@@ -47,7 +47,7 @@ void loop() {
   drive.run(FORWARD);
   long distance;
   distance = return_cm_ping();
-  if(distance > 20) {
+  if(distance < 20) {
     turnAround();
   }
   if (distance >= 200 || distance <= 0){
