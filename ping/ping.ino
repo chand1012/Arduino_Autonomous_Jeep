@@ -10,8 +10,8 @@ Original code improvements to the Ping sketch sourced from Trollmaker.com
 Some code and wiring inspired by http://en.wikiversity.org/wiki/User:Dstaub/robotcar
 */
 
-#define trigPin 12
-#define echoPin 11
+#define trigPin A4
+#define echoPin A5
 #define led 10
 #define led2 13
 
